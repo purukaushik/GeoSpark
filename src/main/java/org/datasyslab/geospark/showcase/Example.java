@@ -59,7 +59,7 @@ public class Example implements Serializable{
 		queryEnvelope=new Envelope (-90.01,-80.01,30.01,40.01);
 		cores=args[0];
 		masterName="spark://"+args[1]+":7077";
-		jarPath=args[2]+"GeoSpark_Precompile_0.3_WithDependencies.jar";
+		jarPath=args[2]+"geospark-0.3.jar";
 		inputLocation=args[3];
 		offset=Integer.parseInt(args[4]);
 		splitter=args[5];
@@ -75,19 +75,19 @@ public class Example implements Serializable{
 			gridType=args[13];
 		}
 		conf=new SparkConf().setAppName(queryName+"+"+inputLocation+"+"+gridType+"+"+cores+"+"+numPartitions).setMaster(masterName)
-				.set("spark.history.fs.logDirectory", "/Users/pswaminathan/sparkeventlog")
+				.set("spark.history.fs.logDirectory", "/home/ubuntu/sparkeventlog")
 				.set("spark.history.retainedApplications", "10000")
 				.set("spark.eventLog.enabled", "true")
-				.set("spark.eventLog.dir", "/Users/pswaminathan/sparkeventlog")
-				.set("spark.executor.memory", "1g")
+				.set("spark.eventLog.dir", "/home/ubuntu/sparkeventlog")
+				.set("spark.executor.memory", "50g")
 				.set("spark.core.connection.ack.wait.timeout","900")
 				.set("spark.akka.timeout","900")
 				.set("spark.akka.frameSize","256")
 				.set("spark.memory.storageFraction", "0.8")
-				.set("spark.driver.memory", "1g")
+				.set("spark.driver.memory", "50g")
 				.set("spark.cores.max",cores)
 				.set("spark.driver.cores","8")
-				.set("spark.driver.maxResultSize", "1g")
+				.set("spark.driver.maxResultSize", "10g")
 				//.set("spark.tachyonStore.url", "tachyon://"+args[0]+":19998")
 				//.set("spark.externalBlockStore.url", "alluxio://"+args[0]+":19998")
 				//.set("spark.externalBlockStore.blockManager", "org.apache.spark.storage.TachyonBlockManager")
